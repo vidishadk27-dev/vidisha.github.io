@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VK News</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0e0f;
+      --surface: #151516;
+      --border: #2a2a2d;
+      --accent: #c8a96e;
+      --accent2: #7c9e87;
+      --accent3: #7a8fbf;
+      --text-primary: #f0ede8;
+      --text-secondary: #888;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,14,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    nav a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.4rem 0.85rem;
+      border-radius: 2px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text-primary);
+      background: var(--border);
+    }
+
+    .date-badge {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Hero strip ── */
+    .hero {
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2.5rem 2.5rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      max-width: 600px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-meta {
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      flex-shrink: 0;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4caf82;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ── Section ── */
+    .section {
+      padding: 3rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-number {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .section-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.65rem;
+      border-radius: 2px;
+      margin-left: auto;
+    }
+
+    .tag-telco   { background: rgba(200,169,110,0.12); color: var(--accent);  border: 1px solid rgba(200,169,110,0.25); }
+    .tag-mktg    { background: rgba(124,158,135,0.12); color: var(--accent2); border: 1px solid rgba(124,158,135,0.25); }
+    .tag-ai      { background: rgba(122,143,191,0.12); color: var(--accent3); border: 1px solid rgba(122,143,191,0.25); }
+
+    .section-line {
+      width: 100%;
+      height: 1px;
+      margin-bottom: 2rem;
+    }
+
+    .line-telco { background: linear-gradient(90deg, var(--accent) 0%, transparent 60%); }
+    .line-mktg  { background: linear-gradient(90deg, var(--accent2) 0%, transparent 60%); }
+    .line-ai    { background: linear-gradient(90deg, var(--accent3) 0%, transparent 60%); }
+
+    .widget-wrap {
+      border-radius: 4px;
+      overflow: hidden;
+      min-height: 400px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text-primary); }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      header { padding: 0 1.2rem; }
+      .date-badge { display: none; }
+      nav a { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
+      .hero { flex-direction: column; padding: 2rem 1.2rem 1.5rem; }
+      .hero-meta { text-align: left; }
+      .section { padding: 2rem 1.2rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a class="logo" href="#">VK <span>News</span></a>
+    <nav>
+      <a href="#telco" class="active">Telco & Media</a>
+      <a href="#marketing">Marketing</a>
+      <a href="#ai">AI</a>
+    </nav>
+    <span class="date-badge" id="live-date"></span>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1 class="hero-title">
+      Industry intelligence,<br/><em>curated daily</em>
+    </h1>
+    <div class="hero-meta">
+      <div><span class="live-dot"></span>Live feed</div>
+      <div>Telco · Media · Marketing · AI</div>
+      <div>Global · Updated automatically</div>
+    </div>
+  </div>
+
+  <!-- Section 1: Telco & Media -->
+  <section class="section" id="telco">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">📡 Telco & Media</h2>
+      <span class="section-tag tag-telco">Strategy & Markets</span>
+    </div>
+    <div class="section-line line-telco"></div>
+    <div class="widget-wrap">
+      <rssapp-wall id="W5uwj3CGyaENwu2X"></rssapp-wall>
+      <script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script>
+    </div>
+  </section>
+
+  <!-- Section 2: Marketing Strategy -->
+  <section class="section" id="marketing">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">📣 Marketing Strategy</h2>
+      <span class="section-tag tag-mktg">B2B & B2C</span>
+    </div>
+    <div class="section-line line-mktg"></div>
+    <div class="widget-wrap">
+      <rssapp-wall id="afgi9aIj4Hni4iAD"></rssapp-wall>
+      <script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script>
+    </div>
+  </section>
+
+  <!-- Section 3: AI & Marketing -->
+  <section class="section" id="ai">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">🤖 AI & Marketing</h2>
+      <span class="section-tag tag-ai">Intelligence & CX</span>
+    </div>
+    <div class="section-line line-ai"></div>
+    <div class="widget-wrap">
+      <rssapp-wall id="duCwKrsjVrGeAQLy"></rssapp-wall>
+      <script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>VK News · Curated industry intelligence</span>
+    <span>Powered by <a href="https://rss.app" target="_blank">RSS.app</a></span>
+  </footer>
+
+  <script>
+    // Live date in header
+    const d = new Date();
+    document.getElementById('live-date').textContent =
+      d.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'long', year:'numeric' });
+
+    // Active nav on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+
+</body>
+</html>
