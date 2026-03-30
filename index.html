@@ -4,27 +4,28 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VK News</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #E9DCC9;
-      --bg-warm:   #EBCFBA;
-      --bg-rose:   #D7C3C3;
-      --surface:   #faf6f0;
-      --surface2:  #f2e9dc;
-      --slate:     #6D6E80;
-      --border:    rgba(109,110,128,0.18);
-      --border-strong: rgba(109,110,128,0.32);
-      --text-primary:  #28231e;
-      --text-secondary:#6D6E80;
-      --text-muted:    #a09a92;
-      --accent-telco:  #6D6E80;
-      --accent-mktg:   #9e6a56;
-      --accent-ai:     #6e7a5e;
+      --bg:        #F4E6B8;
+      --bg-warm:   #F1BE97;
+      --bg-rose:   #E989B6;
+      --surface:   #ffffff;
+      --surface2:  #fdf8ee;
+      --slate:     #3757D2;
+      --border:    rgba(55,87,210,0.12);
+      --border-strong: rgba(55,87,210,0.22);
+      --text-primary:  #1a1a2e;
+      --text-secondary:#5a5a7a;
+      --text-muted:    #9a8fa0;
+      --accent-telco:  #3757D2;
+      --accent-mktg:   #9264D7;
+      --accent-ai:     #E989B6;
       --font-display:  'Playfair Display', Georgia, serif;
       --font-body:     'DM Sans', sans-serif;
+      --font-heading:  'Josefin Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -39,7 +40,7 @@
     /* ── Header ── */
     header {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(233,220,201,0.96);
+      background: rgba(244,230,184,0.96);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-strong);
       padding: 0 2.5rem;
@@ -61,7 +62,7 @@
       transition: all 0.18s;
     }
     nav a:hover { color: var(--text-primary); background: rgba(109,110,128,0.12); }
-    nav a.active { background: var(--slate); color: #f5f0e8; }
+    nav a.active { background: #3757D2; color: #ffffff; }
     .header-right { display: flex; align-items: center; gap: 1rem; }
     .header-date { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.04em; }
     .live-pill {
@@ -77,12 +78,12 @@
 
     /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-warm) 60%, var(--bg-rose) 100%);
+      background: linear-gradient(135deg, #F4E6B8 0%, #F1BE97 60%, #EBCFBA 100%);
       border-bottom: 1px solid var(--border-strong);
       padding: 3.5rem 2.5rem 3rem;
       display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
     }
-    .hero-eyebrow {
+    .hero { color: var(--text-primary); }
       font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em;
       text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.8rem;
     }
@@ -116,20 +117,20 @@
 
     .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
     .section-num { font-family: var(--font-display); font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.12em; }
-    .section-title { font-family: var(--font-display); font-size: 1.55rem; font-weight: 700; }
+    .section-title { font-family: 'DM Sans', sans-serif; font-size: 1.55rem; font-weight: 700; font-style: normal; letter-spacing: -0.01em; }
     .section-badge {
       margin-left: auto; font-size: 0.65rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
       padding: 0.22rem 0.7rem; border-radius: 3px; flex-shrink: 0;
     }
-    .badge-telco { background: rgba(109,110,128,0.1); color: var(--accent-telco); border: 1px solid rgba(109,110,128,0.22); }
-    .badge-mktg  { background: rgba(158,106,86,0.1);  color: var(--accent-mktg);  border: 1px solid rgba(158,106,86,0.22); }
-    .badge-ai    { background: rgba(110,122,94,0.1);  color: var(--accent-ai);    border: 1px solid rgba(110,122,94,0.22); }
+    .badge-telco { background: rgba(55,87,210,0.1);   color: var(--accent-telco); border: 1px solid rgba(55,87,210,0.25); }
+    .badge-mktg  { background: rgba(146,100,215,0.1); color: var(--accent-mktg);  border: 1px solid rgba(146,100,215,0.25); }
+    .badge-ai    { background: rgba(233,137,182,0.1); color: var(--accent-ai);    border: 1px solid rgba(233,137,182,0.25); }
 
     .section-divider { width: 100%; height: 1px; margin: 1.2rem 0 2rem; }
-    .div-telco { background: linear-gradient(90deg, var(--accent-telco) 0%, transparent 55%); }
-    .div-mktg  { background: linear-gradient(90deg, var(--accent-mktg)  0%, transparent 55%); }
-    .div-ai    { background: linear-gradient(90deg, var(--accent-ai)    0%, transparent 55%); }
+    .div-telco { background: linear-gradient(90deg, #3757D2 0%, transparent 55%); }
+    .div-mktg  { background: linear-gradient(90deg, #9264D7 0%, transparent 55%); }
+    .div-ai    { background: linear-gradient(90deg, #E989B6 0%, transparent 55%); }
 
     /* ── Article Grid ── */
     .articles-grid {
@@ -139,8 +140,8 @@
     }
 
     .article-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: #ffffff;
+      border: 1px solid rgba(55,87,210,0.12);
       border-radius: 6px; padding: 1.35rem;
       display: flex; flex-direction: column; gap: 0.7rem;
       transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
@@ -163,10 +164,7 @@
     .card-title {
       font-family: var(--font-display);
       font-size: 0.98rem; font-weight: 700; line-height: 1.42;
-      color: var(--text-primary);
-    }
-
-    .card-desc {
+      color: #28231e;
       font-size: 0.78rem; color: var(--text-secondary); line-height: 1.55;
       display: -webkit-box; -webkit-line-clamp: 3;
       -webkit-box-orient: vertical; overflow: hidden;
@@ -181,9 +179,9 @@
       font-size: 0.6rem; font-weight: 600; letter-spacing: 0.09em;
       text-transform: uppercase; padding: 0.18rem 0.52rem; border-radius: 2px;
     }
-    .tag-telco { background: rgba(109,110,128,0.1); color: var(--accent-telco); }
-    .tag-mktg  { background: rgba(158,106,86,0.1);  color: var(--accent-mktg); }
-    .tag-ai    { background: rgba(110,122,94,0.1);  color: var(--accent-ai); }
+    .tag-telco { background: rgba(55,87,210,0.1);   color: #3757D2; }
+    .tag-mktg  { background: rgba(146,100,215,0.1); color: #9264D7; }
+    .tag-ai    { background: rgba(233,137,182,0.1); color: #c4608e; }
 
     .card-arrow { font-size: 0.8rem; color: var(--text-muted); transition: transform 0.15s; }
     .article-card:hover .card-arrow { transform: translateX(3px); }
@@ -208,7 +206,7 @@
       padding: 1.8rem 2.5rem;
       display: flex; justify-content: space-between; align-items: center;
       font-size: 0.72rem; color: var(--text-muted);
-      background: rgba(215,195,195,0.25);
+      background: rgba(241,190,151,0.3);
     }
     footer a { color: var(--text-muted); text-decoration: none; }
     footer a:hover { color: var(--text-primary); }
@@ -251,10 +249,6 @@
       <span class="hero-tag">AI & CX</span>
       <span class="hero-tag">Global</span>
     </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Topic feeds</div></div>
-    <div class="stat"><div class="stat-num" id="total-count">—</div><div class="stat-label">Articles</div></div>
   </div>
 </div>
 
@@ -307,9 +301,9 @@
     'Updated ' + d.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
 
   const feeds = [
-    { id:'feed-telco',     url:'https://rss.app/feeds/W5uwj3CGyaENwu2X.xml', tag:'Telco & Media', tagClass:'tag-telco' },
-    { id:'feed-marketing', url:'https://rss.app/feeds/afgi9aIj4Hni4iAD.xml', tag:'Marketing',     tagClass:'tag-mktg'  },
-    { id:'feed-ai',        url:'https://rss.app/feeds/duCwKrsjVrGeAQLy.xml', tag:'AI & Marketing',tagClass:'tag-ai'    }
+    { id:'feed-telco',     url:'https://rss.app/feeds/_kNVX8aQh4xNsnXhz.xml', tag:'Telco & Media', tagClass:'tag-telco' },
+    { id:'feed-marketing', url:'https://rss.app/feeds/_OX5o7UnoLVcowJIR.xml', tag:'Marketing',     tagClass:'tag-mktg'  },
+    { id:'feed-ai',        url:'https://rss.app/feeds/_37VZ97IGLH0dI56f.xml', tag:'AI & Marketing',tagClass:'tag-ai'    }
   ];
 
   let totalArticles = 0;
@@ -366,23 +360,49 @@
     document.getElementById('total-count').textContent = totalArticles;
   }
 
+  async function fetchXML(url) {
+    // Try multiple CORS proxies in sequence
+    const proxies = [
+      `https://allorigins.win/get?disableCache=true&url=${encodeURIComponent(url)}`,
+      `https://corsproxy.io/?${encodeURIComponent(url)}`,
+      `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
+    ];
+    for (const proxy of proxies) {
+      try {
+        const res = await fetch(proxy);
+        if (!res.ok) continue;
+        // allorigins wraps in JSON
+        if (proxy.includes('allorigins')) {
+          const json = await res.json();
+          return json.contents;
+        }
+        return await res.text();
+      } catch { continue; }
+    }
+    throw new Error('All proxies failed');
+  }
+
+  function parseXML(xmlText) {
+    const parser = new DOMParser();
+    const doc    = parser.parseFromString(xmlText, 'text/xml');
+    const items  = Array.from(doc.querySelectorAll('item'));
+    return items.map(item => ({
+      title:       item.querySelector('title')?.textContent || '',
+      link:        item.querySelector('link')?.textContent  || item.querySelector('guid')?.textContent || '#',
+      description: item.querySelector('description')?.textContent || '',
+      pubDate:     item.querySelector('pubDate')?.textContent || ''
+    }));
+  }
+
   async function loadFeed(feed) {
-    const proxy = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}&count=20`;
     try {
-      const res  = await fetch(proxy);
-      const data = await res.json();
-      if (data.status === 'ok' && data.items?.length) {
-        const items = data.items.map(i => ({
-          title:       i.title,
-          link:        i.link,
-          description: i.description || i.content || '',
-          pubDate:     i.pubDate,
-          source:      getDomain(i.link)
-        }));
-        renderArticles(feed.id, items, feed.tag, feed.tagClass);
-      } else {
-        throw new Error('No items');
-      }
+      const xmlText = await fetchXML(feed.url);
+      const items   = parseXML(xmlText).map(i => ({
+        ...i,
+        source: getDomain(i.link)
+      }));
+      if (!items.length) throw new Error('No items');
+      renderArticles(feed.id, items, feed.tag, feed.tagClass);
     } catch {
       document.getElementById(feed.id).innerHTML =
         `<div class="feed-error">⚠ Could not load feed.<br><small>Try refreshing the page.</small></div>`;
